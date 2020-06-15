@@ -18,7 +18,7 @@ async function connectMongoDB() {
         //connect do database "itemdn"
         app.locals.db = await app.locals.dbConnection.db("itemdb");
         console.log("Using db: " + app.locals.db.databaseName);
-        //app.locals.db.collection("items").drop( (err,delOK) => {if(delOK) console.log("collections cleared")} );
+        app.locals.db.collection("items").drop( (err,delOK) => {if(delOK) console.log("collections cleared")} );
 
 
     }
@@ -49,7 +49,7 @@ app.get('/', (req,res) => {
 
 
 
-//Returns all items stored in collection items
+//Returns items stored in collection items, if there is an ID
 app.get("/item", (req, res) => {
     //Search for all items in mongodb
 
@@ -107,7 +107,7 @@ app.post("/item", (req, res) => {
     });
 });
 
-
+//function to delete a item from database
 
 app.delete("/item", (req, res) => {
     // delete item
