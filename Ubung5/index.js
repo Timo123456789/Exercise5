@@ -42,6 +42,9 @@ app.use('/leaflet', express.static(__dirname + '/node_modules/leaflet/dist'));
 //Make jquery accessible over localhost:3000/jquery
 app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist'));
 
+//Make bootstrap accessible voer localhost:3000/bootstrap
+app.use('/bootstrap', express.static(__dirname + '/node_modules/bootstrap/dist'));
+
 //Send index.html on request to "/"
 app.get('/', (req,res) => {
     res.sendFile(__dirname + '/index.html')
