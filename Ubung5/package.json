@@ -1,0 +1,19 @@
+{
+  "name": "Ubung5",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "Ubung5": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bson": "^4.0.4",
+    "express": "^4.17.1",
+    "jquery": "^3.5.1",
+    "leaflet": "^1.6.0",
+    "mongodb": "^3.5.8"
+  }
+}
