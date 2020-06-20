@@ -18,7 +18,7 @@ async function connectMongoDB() {
         //connect do database "itemdn"
         app.locals.db = await app.locals.dbConnection.db("itemdb");
         console.log("Using db: " + app.locals.db.databaseName);
-        //app.locals.db.collection("items").drop( (err,delOK) => {if(delOK) console.log("collections cleared")} );
+        app.locals.db.collection("items").drop( (err,delOK) => {if(delOK) console.log("collections cleared")} );
 
 
     }
