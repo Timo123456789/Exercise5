@@ -805,12 +805,35 @@ function convert_unixtime(t) {
 ////////////////////////////////ÜBUNG 4////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////
-var map = L.map('map').setView([51.9574469, 7.5719975], 13);//7.5719975,51.9574469  51.957, -0.09
+
+var layergroup = L.layerGroup()
+
+
+var map = L.map('map', {layers:[layergroup]}).setView([51.9574469, 7.5719975], 13);//7.5719975,51.9574469  51.957, -0.09
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
 
+
+create_heatmap();
+
+
+
+async function create_heatmap(){
+
+
+  var heatlayer =  await screen_busstops();
+console.log("heatlayerexport")
+
+var heat = L.heatLayer(heatlayer,{radius:25});
+var heatlayer = L.layerGroup([heat]);
+var overlayMaps = {
+  "heatlayer":heatlayer
+}
+
+L.control.layers(null, overlayMaps).addTo(map)
+}
 
 var LeafIcon = L.Icon.extend({
   options: {
@@ -832,9 +855,10 @@ L.icon = function (options) {
 
 
 
-function screen_busstops(busstops) {
+async function screen_busstops(busstops) {
+ 
 
-
+busstops = await getstops();
   if (typeof busstops === 'string') { busstops = JSON.parse(busstops); }
 //no Heat Map
  /* for (var i = 0; i < busstops.features.length; i++) {
@@ -857,10 +881,17 @@ heatarray.push(change(convert_GJSON_to_Array(busstops, i)));
 
 
 
-var heat = L.heatLayer(heatarray,{radius:25}).addTo(map);
+var heat = L.heatLayer(heatarray,{radius:25});
+var heatlayer = L.layerGroup(heat).addTo(map);
+console.log("heatlayer");
+
+console.log(heatlayer);
+return heatarray;
 
 
 }
+
+
 
 function screen_User_Position(actpos) {
   console.log("In Screen User Position");
@@ -1224,7 +1255,7 @@ async function check_radios_on_main_site() {
 
       var point = convert_point_to_GJSON(change(point[0].features[0].geometry.coordinates));
      
-      screen_busstops(jhalte);
+      create_heatmap();
       main(point, jhalte);
 
     }
