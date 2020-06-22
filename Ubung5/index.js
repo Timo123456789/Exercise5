@@ -48,6 +48,9 @@ app.use('/bootstrap', express.static(__dirname + '/node_modules/bootstrap/dist')
 //Make leafleatheat accessible voer localhost:3000/leaflet-heap
 app.use('/leaflet-heat', express.static(__dirname + '/node_modules/leaflet.heat/dist'));
 
+//Make leafleatheat accessible voer localhost:3000/leaflet-heap
+app.use('/leaflet-draw', express.static(__dirname + '/node_modules/leaflet-draw/dist'));
+
 //Send index.html on request to "/"
 app.get('/', (req,res) => {
     res.sendFile(__dirname + '/index.html')
