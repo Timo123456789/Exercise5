@@ -9,9 +9,7 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
   <link rel="stylesheet" href="../leaflet/leaflet.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css%22%3E">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js%22%3E"> </script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js%22%3E"> </script>
+
 
   <style>
     .bd-placeholder-img {
@@ -31,7 +29,7 @@
   </style>
   <!-- Custom styles for this template -->
   <link href="style.css" rel="stylesheet">
- 
+
 </head>
 
 <body>
@@ -69,63 +67,61 @@
   </div>
   <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-6" id="map" style="height:400px">
-        </div>
-        <div class ="col-sm-6" id="colum2">
-          <button type="button" onclick="screen_favorites()">screen favorites</button>
-      <button type="button" onclick="check_radios_on_main_site()">screen busstop from selected point</button>
-        
-      <form id="radiobuttons">
+      <div class="col-sm-6" id="mapbootstrap" style="height:400px">
+      </div>
+      <div class="col-sm-6" id="colum2">
+        <button type="button" onclick="screen_favorites()">screen favorites</button>
+        <button type="button" onclick="check_radios_on_main_site()">screen busstop from selected point</button>
+
+        <form id="radiobuttons">
 
 
-      </form>
-      <p id="demo"></p>
+        </form>
+        <p id="demo"></p>
 
 
-      <table id="Table">
-        <tr>
-          <th>Point 1</th>
-          <th>busstop</th>
-          <th>distance in meters</th>
-          <th>bearing</th>
-        </tr>
-      </table>
-      <br>
-      <br>
+        <table id="Table">
+          <tr>
+            <th>Point 1</th>
+            <th>busstop</th>
+            <th>distance in meters</th>
+            <th>bearing</th>
+          </tr>
+        </table>
+        <br>
+        <br>
 
-      <table id="Table2">
-        <tr>
-          <th>direction</th>
-          <th>line number</th>
-          <th>arrival time</th>
-          <th>predicted departure time</th>
-          <th>planned departure time</th>
+        <table id="Table2">
+          <tr>
+            <th>direction</th>
+            <th>line number</th>
+            <th>arrival time</th>
+            <th>predicted departure time</th>
+            <th>planned departure time</th>
 
-        </tr>
+          </tr>
 
 
-      </table>
+        </table>
 
-        </div>
+      </div>
 
     </div>
   </div>
-  
-
-
-      
-
-      
 
 
 
 
-      
 
 
 
 
-    
+
+
+
+
+
+
 
 
   <script src="/leaflet/leaflet.js"></script>
@@ -138,4 +134,5 @@
   <footer class="container">
     <p>&copy; Timo Lietmeyer, Mailto: timolietmeyer@uni-muenster.de</p>
   </footer>
+
 </html>
