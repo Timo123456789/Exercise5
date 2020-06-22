@@ -4,11 +4,14 @@
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
   <link rel="stylesheet" href="../leaflet/leaflet.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css%22%3E">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js%22%3E"> </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js%22%3E"> </script>
 
   <style>
     .bd-placeholder-img {
@@ -52,47 +55,30 @@
 
     </div>
   </nav>
-
-  <main role="main" class="container">
-
-    <div class="starter-template">
-      <h1>GeoSoftware1 Assignment 3</h1>
-      <p class="lead">
-      <h1><a href="index.html"></a></h1>
+  <h1>GeoSoftware1 Assignment 6</h1>
+  <p class="lead">
+  <h1><a href="index.html"></a></h1>
 
 
-      <div>
-        course: Geosoftware I SoSe 2020 <br>
-        authors: Timo Lietmeyer <br> <br>
+  <div>
+    course: Geosoftware I SoSe 2020 <br>
+    authors: Timo Lietmeyer <br> <br>
 
-        This page shows bus stops, the distance and bearing from the position of the user. The bus lines with their
-        arrival and departure times for the nearest busstops are shown.
-      </div>
-
-
-
-
-
-      <button type="button" onclick="screen_favorites()">screen favorites</button>
+    This page shows bus stops, the distance and bearing from the position of the user. The bus lines with their
+    arrival and departure times for the nearest busstops are shown.
+  </div>
+  <div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-6" id="map" style="height:400px">
+        </div>
+        <div class ="col-sm-6" id="colum2">
+          <button type="button" onclick="screen_favorites()">screen favorites</button>
       <button type="button" onclick="check_radios_on_main_site()">screen busstop from selected point</button>
-
-
-
+        
       <form id="radiobuttons">
 
 
       </form>
-
-
-
-      <div class="container fill">
-        <div id="map">
-
-        </div>
-      </div>
-
-
-
       <p id="demo"></p>
 
 
@@ -120,11 +106,31 @@
 
       </table>
 
+        </div>
 
-      </p>
     </div>
+  </div>
+  
 
-  </main><!-- /.container -->
+
+  
+
+  
+      
+
+      
+
+
+
+
+      
+
+
+
+
+    
+
+
   <script src="/leaflet/leaflet.js"></script>
   <script src="/leaflet-heat/leaflet-heat.js"></script>
 
