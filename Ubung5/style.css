@@ -1,3 +1,7 @@
+body { 
+  padding-top: 65px; 
+}
+
 div.a {
   font-family: arial, sans-serif;
   text-align: center;
