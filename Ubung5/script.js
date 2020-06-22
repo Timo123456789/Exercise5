@@ -836,13 +836,28 @@ function screen_busstops(busstops) {
 
 
   if (typeof busstops === 'string') { busstops = JSON.parse(busstops); }
-
-  for (var i = 0; i < busstops.features.length; i++) {
+//no Heat Map
+ /* for (var i = 0; i < busstops.features.length; i++) {
     //for (var i = 0; i<20;i++){
 
     L.marker(change(convert_GJSON_to_Array(busstops, i)), { icon: bicon }).addTo(map) // [51.5, -0.09] change(convert_GJSON_to_Array(busstops,i))
       .bindPopup("Bezeichnung:  " + busstops.features[i].properties.lbez + "  (" + busstops.features[i].properties.richtung + ")" + "<br>" + "Nummer: " + busstops.features[i].properties.nr)
   }
+*/
+
+
+
+var heatarray =[];
+
+for (var i = 0; i < busstops.features.length; i++) {
+
+heatarray.push(change(convert_GJSON_to_Array(busstops, i)));
+ 
+}
+
+
+
+var heat = L.heatLayer(heatarray,{radius:25}).addTo(map);
 
 
 }
