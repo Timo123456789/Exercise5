@@ -807,7 +807,7 @@ function convert_unixtime(t) {
 ///////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////
 
-var layergroup = L.layerGroup()
+var layergroup = L.layerGroup();
 
 
 var map = L.map('mapbootstrap', {layers:[layergroup]}).setView([51.9574469, 7.5719975], 13);//7.5719975,51.9574469  51.957, -0.09
@@ -862,13 +862,13 @@ busstops = await getstops();
 
   if (typeof busstops === 'string') { busstops = JSON.parse(busstops); }
 //no Heat Map
- /* for (var i = 0; i < busstops.features.length; i++) {
-    //for (var i = 0; i<20;i++){
+ /*//for (var i = 0; i < busstops.features.length; i++) {
+  //  for (var i = 0; i<20;i++){
 
     L.marker(change(convert_GJSON_to_Array(busstops, i)), { icon: bicon }).addTo(map) // [51.5, -0.09] change(convert_GJSON_to_Array(busstops,i))
       .bindPopup("Bezeichnung:  " + busstops.features[i].properties.lbez + "  (" + busstops.features[i].properties.richtung + ")" + "<br>" + "Nummer: " + busstops.features[i].properties.nr)
-  }
-*/
+  }*/
+
 
 
 
@@ -882,11 +882,7 @@ heatarray.push(change(convert_GJSON_to_Array(busstops, i)));
 
 
 
-var heat = L.heatLayer(heatarray,{radius:25});
-var heatlayer = L.layerGroup(heat).addTo(map);
-console.log("heatlayer");
 
-console.log(heatlayer);
 return heatarray;
 
 
@@ -895,12 +891,11 @@ return heatarray;
 
 
 function screen_User_Position(actpos) {
-  console.log("In Screen User Position");
-  console.log(actpos);
+  
   
   
   L.marker((convert_GJSON_to_Array(actpos, 0)),/*{icon: bicon}*/).addTo(map) // [51.5, -0.09] change(convert_GJSON_to_Array(busstops,i))
-    .bindPopup("User Position")
+    .bindPopup("Selected Point")
 }
 
 
@@ -1250,6 +1245,7 @@ async function check_radios_on_main_site() {
   db = await create_Object_with_IDs_and_coordinates();
 
 
+
   for (var i = 0; i < radios.length; i++) {
  
 
@@ -1259,8 +1255,8 @@ async function check_radios_on_main_site() {
     
 
       var point = convert_point_to_GJSON(change(point[0].features[0].geometry.coordinates));
-     
       create_heatmap();
+     
       main(point, jhalte);
 
     }
