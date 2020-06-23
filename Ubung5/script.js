@@ -23,10 +23,13 @@
 var point;
 var pointcloud;
 //getXHRObject(0);
+screen_favorites();
+create_heatmap();
 
 
 function main(point, pointcloud) {
   screen_User_Position(point);
+ 
 
   
 
@@ -816,7 +819,6 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 
 
-create_heatmap();
 
 
 
@@ -859,6 +861,7 @@ async function screen_busstops(busstops) {
  
 
 busstops = await getstops();
+
   if (typeof busstops === 'string') { busstops = JSON.parse(busstops); }
 //no Heat Map
  /* for (var i = 0; i < busstops.features.length; i++) {

@@ -53,7 +53,17 @@ app.use('/leaflet-draw', express.static(__dirname + '/node_modules/leaflet-draw/
 
 //Send index.html on request to "/"
 app.get('/', (req,res) => {
-    res.sendFile(__dirname + '/index.html')
+    res.sendFile(__dirname + '/index3.html')
+})
+
+//Send index.html on request to "/"
+app.get('/pointeditorpage', (req,res) => {
+    res.sendFile(__dirname + '/index2.html')
+})
+
+//Send index.html on request to "/"
+app.get('/mainpage', (req,res) => {
+    res.sendFile(__dirname + '/index3.html')
 })
 
 
