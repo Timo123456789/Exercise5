@@ -27,9 +27,9 @@ var pointcloud;
 
 function main(point, pointcloud) {
   screen_User_Position(point);
- 
 
-  
+
+
 
 
   console.log("Main: point" + JSON.stringify(point));
@@ -210,24 +210,24 @@ function mtable(array_of_objects) {
 
 
     var row = table.insertRow();  //insert a row
-    row.setAttribute("class","rt1");
+    row.setAttribute("class", "rt1");
 
 
     var point = row.insertCell()
     point.innerHTML = array_of_objects[i].point;
-    point.setAttribute("class","t1"); //insert cell at the row variable with the point (point 1) value on place i of array array_of_objects
-   
-   var pointcloud = row.insertCell()
-   pointcloud.innerHTML = array_of_objects[i].pointcloud;
-   pointcloud.setAttribute("class","t1"); //insert cell at the row variable with the pointcloud (point 2) value on place i of array array_of_objects
+    point.setAttribute("class", "t1"); //insert cell at the row variable with the point (point 1) value on place i of array array_of_objects
 
-   var array_with_calculated_distances =row.insertCell();
-   array_with_calculated_distances.innerHTML = array_of_objects[i].array_with_calculated_distances; //insert cell at the row variable with the distance value on place i of array array_of_objects
-   array_with_calculated_distances.setAttribute("class","t1");
+    var pointcloud = row.insertCell()
+    pointcloud.innerHTML = array_of_objects[i].pointcloud;
+    pointcloud.setAttribute("class", "t1"); //insert cell at the row variable with the pointcloud (point 2) value on place i of array array_of_objects
 
-   var array_with_calculated_bearing= row.insertCell();
-   array_with_calculated_bearing.innerHTML = array_of_objects[i].array_with_calculated_bearing; //insert cell at the row variable with the bearing value on place i of array array_of_objects
-   array_with_calculated_bearing.setAttribute("class","t1");
+    var array_with_calculated_distances = row.insertCell();
+    array_with_calculated_distances.innerHTML = array_of_objects[i].array_with_calculated_distances; //insert cell at the row variable with the distance value on place i of array array_of_objects
+    array_with_calculated_distances.setAttribute("class", "t1");
+
+    var array_with_calculated_bearing = row.insertCell();
+    array_with_calculated_bearing.innerHTML = array_of_objects[i].array_with_calculated_bearing; //insert cell at the row variable with the bearing value on place i of array array_of_objects
+    array_with_calculated_bearing.setAttribute("class", "t1");
 
 
   }
@@ -742,32 +742,32 @@ function mtablestops(array_of_objects) {
   for (var i = 0; i < array_of_objects.length; i++) {
 
     //    console.log("table2for");
- 
+
     var row = table.insertRow();  //insert a row
-    row.setAttribute("class","rt2");
-
-    
-    
-   var richtungstext =  row.insertCell();
-   richtungstext.innerHTML  = array_of_objects[i].richtungstext;
-   richtungstext.setAttribute("class","t2"); //insert cell at the row variable with the bearing of the line
-
-   var linienid = row.insertCell();
-   linienid.innerHTML = array_of_objects[i].linienid;
-   linienid.setAttribute("class","t2"); //insert cell at the row variable with with the lines number
+    row.setAttribute("class", "rt2");
 
 
-   var ankunftszeit = row.insertCell();
-   ankunftszeit.innerHTML = convert_unixtime(array_of_objects[i].ankunftszeit); 
-   ankunftszeit.setAttribute("class","t2");//insert cell at the row variable with the arrival time
 
-   var abfahrtszeit = row.insertCell();
-   abfahrtszeit.innerHTML = convert_unixtime(array_of_objects[i].abfahrtszeit); 
-   abfahrtszeit.setAttribute("class","t2")//insert cell at the row variable with the planned departure time
+    var richtungstext = row.insertCell();
+    richtungstext.innerHTML = array_of_objects[i].richtungstext;
+    richtungstext.setAttribute("class", "t2"); //insert cell at the row variable with the bearing of the line
 
-   var tatabf =    row.insertCell();
-   tatabf.innerHTML = convert_unixtime(array_of_objects[i].tatsaechliche_abfahrtszeit); 
-   tatabf.setAttribute("class","t2");//insert cell at the row variable with the right departure time
+    var linienid = row.insertCell();
+    linienid.innerHTML = array_of_objects[i].linienid;
+    linienid.setAttribute("class", "t2"); //insert cell at the row variable with with the lines number
+
+
+    var ankunftszeit = row.insertCell();
+    ankunftszeit.innerHTML = convert_unixtime(array_of_objects[i].ankunftszeit);
+    ankunftszeit.setAttribute("class", "t2");//insert cell at the row variable with the arrival time
+
+    var abfahrtszeit = row.insertCell();
+    abfahrtszeit.innerHTML = convert_unixtime(array_of_objects[i].abfahrtszeit);
+    abfahrtszeit.setAttribute("class", "t2")//insert cell at the row variable with the planned departure time
+
+    var tatabf = row.insertCell();
+    tatabf.innerHTML = convert_unixtime(array_of_objects[i].tatsaechliche_abfahrtszeit);
+    tatabf.setAttribute("class", "t2");//insert cell at the row variable with the right departure time
 
   }
 
@@ -810,7 +810,7 @@ function convert_unixtime(t) {
 var layergroup = L.layerGroup();
 
 
-var map = L.map('mapbootstrap', {layers:[layergroup]}).setView([51.9574469, 7.5719975], 13);//7.5719975,51.9574469  51.957, -0.09
+var map = L.map('mapbootstrap', { layers: [layergroup] }).setView([51.9574469, 7.5719975], 13);//7.5719975,51.9574469  51.957, -0.09
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -818,21 +818,19 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 
 
+async function create_heatmap() {
 
 
-async function create_heatmap(){
+  var heatlayer = await screen_busstops();
+  console.log("heatlayerexport")
 
+  var heat = L.heatLayer(heatlayer, { radius: 25 });
+  var heatlayer = L.layerGroup([heat]);
+  var overlayMaps = {
+    "heatlayer": heatlayer
+  }
 
-  var heatlayer =  await screen_busstops();
-console.log("heatlayerexport")
-
-var heat = L.heatLayer(heatlayer,{radius:25});
-var heatlayer = L.layerGroup([heat]);
-var overlayMaps = {
-  "heatlayer":heatlayer
-}
-
-L.control.layers(null, overlayMaps).addTo(map)
+  L.control.layers(null, overlayMaps).addTo(map)
 }
 
 var LeafIcon = L.Icon.extend({
@@ -856,34 +854,34 @@ L.icon = function (options) {
 
 
 async function screen_busstops(busstops) {
- 
 
-busstops = await getstops();
+
+  busstops = await getstops();
 
   if (typeof busstops === 'string') { busstops = JSON.parse(busstops); }
-//no Heat Map
- /*//for (var i = 0; i < busstops.features.length; i++) {
-  //  for (var i = 0; i<20;i++){
-
-    L.marker(change(convert_GJSON_to_Array(busstops, i)), { icon: bicon }).addTo(map) // [51.5, -0.09] change(convert_GJSON_to_Array(busstops,i))
-      .bindPopup("Bezeichnung:  " + busstops.features[i].properties.lbez + "  (" + busstops.features[i].properties.richtung + ")" + "<br>" + "Nummer: " + busstops.features[i].properties.nr)
-  }*/
-
-
-
-
-var heatarray =[];
-
-for (var i = 0; i < busstops.features.length; i++) {
-
-heatarray.push(change(convert_GJSON_to_Array(busstops, i)));
+  //no Heat Map
+  /*//for (var i = 0; i < busstops.features.length; i++) {
+   //  for (var i = 0; i<20;i++){
  
-}
+     L.marker(change(convert_GJSON_to_Array(busstops, i)), { icon: bicon }).addTo(map) // [51.5, -0.09] change(convert_GJSON_to_Array(busstops,i))
+       .bindPopup("Bezeichnung:  " + busstops.features[i].properties.lbez + "  (" + busstops.features[i].properties.richtung + ")" + "<br>" + "Nummer: " + busstops.features[i].properties.nr)
+   }*/
 
 
 
 
-return heatarray;
+  var heatarray = [];
+
+  for (var i = 0; i < busstops.features.length; i++) {
+
+    heatarray.push(change(convert_GJSON_to_Array(busstops, i)));
+
+  }
+
+
+
+
+  return heatarray;
 
 
 }
@@ -891,9 +889,9 @@ return heatarray;
 
 
 function screen_User_Position(actpos) {
-  
-  
-  
+
+
+
   L.marker((convert_GJSON_to_Array(actpos, 0)),/*{icon: bicon}*/).addTo(map) // [51.5, -0.09] change(convert_GJSON_to_Array(busstops,i))
     .bindPopup("Selected Point")
 }
@@ -1011,11 +1009,11 @@ function inserted_address() {
 ///////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////
 
- /**
-  *@desc AJAX Function (POST) to Add a GJSON Object from a textfield to the database
-  *@param result: GJSON Objet
-  *
-  */
+/**
+ *@desc AJAX Function (POST) to Add a GJSON Object from a textfield to the database
+ *@param result: GJSON Objet
+ *
+ */
 function Add_GJSON_to_DB() {
 
   var result = document.getElementById("geojsontextarea").value;
@@ -1028,10 +1026,11 @@ function Add_GJSON_to_DB() {
       url: "/item",
       method: "POST",
       data: result,
-      success: function (result) { 
+      success: function (result) {
         res(result);
-        document.getElementById("geojsontextarea").value=" ";
-         show_DB(); },
+        document.getElementById("geojsontextarea").value = " ";
+        show_DB();
+      },
       error: function (err) { console.log(err) }
     });
   })
@@ -1066,8 +1065,8 @@ async function screen_favorites() {
   */
 
 function create_list_of_ratio_buttons(GJSON) {
-  document.getElementById("radiobuttons").innerHTML="";
- 
+  document.getElementById("radiobuttons").innerHTML = "";
+
 
 
   var list = document.getElementById("radiobuttons");
@@ -1083,7 +1082,7 @@ function create_list_of_ratio_buttons(GJSON) {
     );
     x.setAttribute(
       "name",
-     "value"
+      "value"
     );
     list.appendChild(x);
     list.appendChild(y);
@@ -1097,12 +1096,12 @@ function create_list_of_ratio_buttons(GJSON) {
   *
   */
 
-async function show_DB(){
+async function show_DB() {
   console.log("showdb");
-  
-var db = await load_GJSON_from_db();
-document.getElementById("radiobuttons").innerHTML="";
-create_list_of_ratio_buttons(db);
+
+  var db = await load_GJSON_from_db();
+  document.getElementById("radiobuttons").innerHTML = "";
+  create_list_of_ratio_buttons(db);
 
 }
 
@@ -1116,21 +1115,21 @@ create_list_of_ratio_buttons(db);
 async function create_Object_with_IDs_and_coordinates() {
 
   var db = await load_GJSON_from_db();
-  var arr_db=[]
+  var arr_db = []
   for (var i = 0; i < db.length; i++) {
     var obj_id_coor = {
 
     };
-      obj_id_coor.id =  db[i]._id;
-      obj_id_coor.coordinates= db[i].features[0].geometry.coordinates;
-arr_db.push(obj_id_coor);
-   
+    obj_id_coor.id = db[i]._id;
+    obj_id_coor.coordinates = db[i].features[0].geometry.coordinates;
+    arr_db.push(obj_id_coor);
+
 
 
   }
   console.log(arr_db);
-  
-return arr_db;
+
+  return arr_db;
 }
 
 
@@ -1141,24 +1140,24 @@ return arr_db;
   *
   */
 
-async function check_radios(){
+async function check_radios() {
   var radios = document.getElementsByName("value");
   console.log(radios);
   var db = [];
   db = await create_Object_with_IDs_and_coordinates();
   console.log("db");
-  
+
   console.log(db);
-  
-  
+
+
   for (var i = 0; i < radios.length; i++) {
     console.log("in for");
-    
-    if(radios[i].checked==true){
-      console.log("ist radio an "+i+" true");
-      console.log("radio_id"+ db[i].id + " coor "+db[i].coordinates);
-    delete_point_from_DB(db[i]);
-      
+
+    if (radios[i].checked == true) {
+      console.log("ist radio an " + i + " true");
+      console.log("radio_id" + db[i].id + " coor " + db[i].coordinates);
+      delete_point_from_DB(db[i]);
+
     }
 
   }
@@ -1172,19 +1171,20 @@ async function check_radios(){
   *
   */
 
-function delete_point_from_DB(db){
-  var temp =  db;
+function delete_point_from_DB(db) {
+  var temp = db;
   return new Promise(function (res, rej) {
-  $.ajax({
-    url: "/item",
-    method: "DELETE",
-    data: temp,
-    success: function (result) { 
-      res(result);
-      show_DB(); },
-    error: function (err) { console.log(err) }
-  });
-})
+    $.ajax({
+      url: "/item",
+      method: "DELETE",
+      data: temp,
+      success: function (result) {
+        res(result);
+        show_DB();
+      },
+      error: function (err) { console.log(err) }
+    });
+  })
 
 
 }
@@ -1197,32 +1197,32 @@ function delete_point_from_DB(db){
   *
   */
 
-async function value_from_selected_point(db){
+async function value_from_selected_point(db) {
 
-  
+
   var radios = document.getElementsByName("value");
   console.log(radios);
-  
-  console.log("db id obj:"+db.id);
-  console.log("db id obj:"+db.coordinates);
-  
-    
+
+  console.log("db id obj:" + db.id);
+  console.log("db id obj:" + db.coordinates);
+
+
 
   var temp = db;
-  
- return new Promise(function (res, rej) {
-  $.ajax({
-    url: "/item",
-    method: "GET",
-    data: temp,
-    success: function (result) { 
-      res(result);
-     },
-    error: function (err) { console.log(err) }
-  });
-})
 
-  
+  return new Promise(function (res, rej) {
+    $.ajax({
+      url: "/item",
+      method: "GET",
+      data: temp,
+      success: function (result) {
+        res(result);
+      },
+      error: function (err) { console.log(err) }
+    });
+  })
+
+
 
 
 
@@ -1240,23 +1240,23 @@ async function check_radios_on_main_site() {
   var jhalte = await getstops();
 
   var radios = document.getElementsByName("value");
- 
+
   var db = [];
   db = await create_Object_with_IDs_and_coordinates();
 
 
 
   for (var i = 0; i < radios.length; i++) {
- 
+
 
     if (radios[i].checked == true) {
-     
+
       var point = await value_from_selected_point(db[i]);
-    
+
 
       var point = convert_point_to_GJSON(change(point[0].features[0].geometry.coordinates));
       create_heatmap();
-     
+
       main(point, jhalte);
 
     }
@@ -1269,7 +1269,7 @@ async function check_radios_on_main_site() {
   *@desc function to clean rows of all tables
   */
 
-function clean_tables(){
+function clean_tables() {
 
   console.log("cleantables");
   $(".rt1").html(" ");
@@ -1283,8 +1283,8 @@ function clean_tables(){
   */
 
 
-function clear_textarea(){
-  document.getElementById("geojsontextarea").value=" ";
+function clear_textarea() {
+  document.getElementById("geojsontextarea").value = " ";
 }
 
 
@@ -1319,7 +1319,7 @@ function load_GJSON_from_db() {
   *@return data
   */
 
-async function getstops(){
+async function getstops() {
   return new Promise(function (res, rej) {
     $.ajax({
       url: "https://rest.busradar.conterra.de/prod/haltestellen",
