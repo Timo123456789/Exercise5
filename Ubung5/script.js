@@ -22,9 +22,7 @@
 
 var point;
 var pointcloud;
-//getXHRObject(0);
-screen_favorites();
-create_heatmap();
+
 
 
 function main(point, pointcloud) {
@@ -906,7 +904,11 @@ function screen_User_Position(actpos) {
 }
 
 
-
+/**
+  *@desc change values of an array
+  
+  *
+  */
 
 function change(array) {
   //  console.log("arrayohnewechsel"+array);
